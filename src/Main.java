@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,5 +22,36 @@ public class Main {
             double average = sum / count;
             System.out.println(Arrays.toString(numbers) + "=" + average + "/" + count);
         }
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите строку: ");
+        String inputString = scanner.nextLine();
+
+        String processedString = processString(inputString);
+
+        boolean isPalindrome = checkPalindrome(processedString);
+
+        if (isPalindrome) {
+            System.out.println("Эта строка - палиндром.");
+        } else {
+            System.out.println("Эта строка - не палиндром.");
+        }
+    }
+
+    private static String processString(String str) {
+        return str.replaceAll("[^a-zA-Z]", "").toLowerCase();
+    }
+
+    private static boolean checkPalindrome(String str) {
+        int length = str.length();
+
+        for (int i = 0; i < length / 2; i++) {
+            if (str.charAt(i) != str.charAt(length - 1 - i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
